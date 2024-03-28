@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .faq-heading {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .question {
+            font-weight: bold;
+        }
+        .answer {
+            margin-top: 5px;
+        }
+        .add-button {
+            display: block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .add-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="faq-heading">FAQ on Features First Hackathon Project</h1>
+    <div class="faq-item" id="q1">
+        <div class="question">Is it possible to integrate this feature for all the products in the catalog and go live?</div>
+        <div class="answer">Yes, it's possible to integrate this feature for all the products in the catalog. However, we don’t recommend doing that without reviewing the product feature cards as the Gen Ai might introduce a summary that might not be 100% accurate to that product. Any wrong information can lead to legal compliance issues.</div>
+    </div>
+    <!-- Other FAQ items go here -->
+    <div id="new-questions"></div>
+    <button id="addQuestion" class="add-button">+</button>
+</div>
+
+<script>
+  var contentEditable = true;
+
+  document.getElementById('addQuestion').addEventListener('click', function() {
+    var faqItem = document.createElement('div');
+    faqItem.classList.add('faq-item');
+
+    var question = document.createElement('div');
+    question.classList.add('question');
+    question.contentEditable = contentEditable;
+    question.textContent = 'New Question';
+    faqItem.appendChild(question);
+
+    var answer = document.createElement('div');
+    answer.classList.add('answer');
+    answer.contentEditable = contentEditable;
+    answer.textContent = 'New Answer';
+    faqItem.appendChild(answer);
+
+    document.getElementById('new-questions').appendChild(faqItem);
+  });
+
+  document.addEventListener('keydown', function(event) {
+    // Toggle content editable mode when 'e' key is pressed
+    if (event.key === 'e') {
+      contentEditable = !contentEditable;
+      var questions = document.querySelectorAll('.question');
+      var answers = document.querySelectorAll('.answer');
+      questions.forEach(function(question) {
+        question.contentEditable = contentEditable;
+      });
+      answers.forEach(function(answer) {
+        answer.contentEditable = contentEditable;
+      });
+    }
+  });
+</script>
+</body>
+</html>
